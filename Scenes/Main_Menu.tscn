@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ulb00muo6h6h"]
 
-[ext_resource type="Texture2D" uid="uid://bkdo77wmjsuvs" path="res://Assets/MenuBackground.png" id="1_c4tk2"]
-[ext_resource type="Texture2D" uid="uid://l48higcroucp" path="res://Assets/Title.png" id="2_rmbjf"]
+[ext_resource type="Texture2D" uid="uid://bwwhsxou6dnow" path="res://Assets/MenuBG.png" id="1_rmbjf"]
+[ext_resource type="Texture2D" uid="uid://bg5ahssewlike" path="res://Assets/TitleW.png" id="2_b7rmo"]
 
 [node name="MainMenu" type="Control" unique_id=335096256]
 layout_mode = 3
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.38368702, 0.6598492, 0.8683478, 1)
+color = Color(0, 1, 1, 1)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=610893078]
 layout_mode = 1
@@ -33,11 +33,7 @@ offset_right = 384.5
 offset_bottom = 260.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_c4tk2")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+texture = ExtResource("1_rmbjf")
 
 [node name="Panel" type="Panel" parent="NinePatchRect" unique_id=981573635]
 layout_mode = 1
@@ -52,8 +48,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -223.25
-offset_right = 223.25
-offset_bottom = 98.5
+offset_left = -223.0
+offset_top = 21.5
+offset_right = 223.5
+offset_bottom = 92.5
 grow_horizontal = 2
-texture = ExtResource("2_rmbjf")
+texture = ExtResource("2_b7rmo")
