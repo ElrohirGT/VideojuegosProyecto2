@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctj6te3w2niqx"]
+[gd_scene load_steps=5 format=3 uid="uid://ctj6te3w2niqx"]
 
-[ext_resource type="PackedScene" uid="uid://uo7y664uhi7n" path="res://Scenes/Player.tscn" id="1_vk57k"]
+[ext_resource type="PackedScene" uid="uid://uo7y664uhi7n" path="res://Prefabs/Player1.tscn" id="1_vk57k"]
+[ext_resource type="PackedScene" uid="uid://d2wk4cxnh4ckx" path="res://Prefabs/Player2.tscn" id="2_8ffim"]
+[ext_resource type="Script" uid="uid://b8lvyyfl7281s" path="res://Scripts/player_2.gd" id="3_xfk5q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vk57k"]
 size = Vector2(802, 40)
@@ -8,7 +10,11 @@ size = Vector2(802, 40)
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_vk57k")]
-position = Vector2(253, 157)
+position = Vector2(198, 157)
+
+[node name="Player2" parent="." instance=ExtResource("2_8ffim")]
+position = Vector2(337, 155)
+script = ExtResource("3_xfk5q")
 
 [node name="Platform" type="ColorRect" parent="."]
 offset_left = 75.0

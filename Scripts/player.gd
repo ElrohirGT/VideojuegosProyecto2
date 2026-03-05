@@ -6,7 +6,7 @@ var _jump_velocity: float = -400.0
 func _process(delta):
 	velocity += get_gravity() * delta
 	
-	if Input.is_action_pressed("ui_accept") && is_on_floor():
+	if Input.is_action_pressed("ui_up") && is_on_floor():
 		velocity.y = _jump_velocity
 	
 	if Input.is_action_pressed("ui_right"):
