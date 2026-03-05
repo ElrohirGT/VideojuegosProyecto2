@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="ColorDash"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://ctj6te3w2niqx"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [physics]
