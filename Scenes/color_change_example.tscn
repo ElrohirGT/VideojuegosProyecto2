@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bihqc1yq0bxo3"]
+
+[ext_resource type="PackedScene" uid="uid://uo7y664uhi7n" path="res://Prefabs/Player1.tscn" id="1_674eg"]
+[ext_resource type="PackedScene" uid="uid://d2wk4cxnh4ckx" path="res://Prefabs/Player2.tscn" id="2_l14sa"]
+[ext_resource type="Script" uid="uid://duqjvwk83pu5j" path="res://Scripts/obstacule.gd" id="3_ikk10"]
+[ext_resource type="Script" uid="uid://bxdc1gy6moh6i" path="res://Scripts/orb.gd" id="4_b6b3g"]
+[ext_resource type="Script" uid="uid://bab0nufhq65x7" path="res://Scenes/event_bus.gd" id="5_p0ik2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_674eg"]
+size = Vector2(1182, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b6b3g"]
+radius = 16.124516
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l14sa"]
+size = Vector2(30.5, 325.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0ik2"]
+size = Vector2(30, 285)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0ik2"]
+radius = 15.132746
+
+[node name="ColorChangeExample" type="Node2D" unique_id=452319417]
+
+[node name="Player" parent="." unique_id=583082943 instance=ExtResource("1_674eg")]
+position = Vector2(113, 579)
+
+[node name="Player2" parent="." unique_id=1850135642 instance=ExtResource("2_l14sa")]
+position = Vector2(1010, 137)
+
+[node name="Ground" type="RigidBody2D" parent="." unique_id=355906875]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=619187618]
+position = Vector2(581, 643)
+shape = SubResource("RectangleShape2D_674eg")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="Divider" type="RigidBody2D" parent="." unique_id=1079936886]
+position = Vector2(-3, -305)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Divider" unique_id=1537928881]
+position = Vector2(581, 643)
+shape = SubResource("RectangleShape2D_674eg")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="TopHalf" type="Node2D" parent="." unique_id=619010988]
+
+[node name="Orb" type="Area2D" parent="TopHalf" unique_id=1979893130]
+position = Vector2(263, 588)
+script = ExtResource("4_b6b3g")
+color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopHalf/Orb" unique_id=1063889100]
+shape = SubResource("CircleShape2D_b6b3g")
+debug_color = Color(0.8573901, 0.0007373631, 0.8835215, 0.41960785)
+
+[node name="Obstacule" type="Node2D" parent="TopHalf" unique_id=1010464322]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TopHalf/Obstacule" unique_id=1067715783]
+script = ExtResource("3_ikk10")
+obstacle_color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopHalf/Obstacule/StaticBody2D" unique_id=1146208516]
+position = Vector2(738, 165)
+shape = SubResource("RectangleShape2D_l14sa")
+debug_color = Color(0.8748489, 0.00043837487, 0.8386524, 0.41960785)
+
+[node name="BottomHalf" type="Node2D" parent="." unique_id=1825322611]
+
+[node name="Obstacle" type="Node2D" parent="BottomHalf" unique_id=624667966]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BottomHalf/Obstacle" unique_id=2102018699]
+script = ExtResource("3_ikk10")
+obstacle_area = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomHalf/Obstacle/StaticBody2D" unique_id=1560581722]
+position = Vector2(738, 490.5)
+shape = SubResource("RectangleShape2D_p0ik2")
+
+[node name="Orb" type="Area2D" parent="BottomHalf" unique_id=1397124070]
+position = Vector2(271, 269)
+script = ExtResource("4_b6b3g")
+area = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomHalf/Orb" unique_id=1442580559]
+shape = SubResource("CircleShape2D_p0ik2")
+
+[node name="EventBus" type="Node2D" parent="." unique_id=141161303]
+position = Vector2(1330, 353)
+script = ExtResource("5_p0ik2")
+
+[connection signal="body_entered" from="TopHalf/Orb" to="TopHalf/Orb" method="_on_body_entered"]
+[connection signal="picked_up" from="TopHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
+[connection signal="body_entered" from="BottomHalf/Orb" to="BottomHalf/Orb" method="_on_body_entered"]
+[connection signal="picked_up" from="BottomHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="TopHalf/Obstacule/StaticBody2D" method="_on_event_bus_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Obstacle/StaticBody2D" method="_on_event_bus_orb_picked_up"]
