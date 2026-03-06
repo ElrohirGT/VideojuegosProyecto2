@@ -1,0 +1,333 @@
+[gd_scene format=3 uid="uid://h3x2rtfs637k"]
+
+[ext_resource type="Script" uid="uid://dy1jowxjdv0b" path="res://Scripts/background.gd" id="1_didp7"]
+[ext_resource type="Script" uid="uid://duqjvwk83pu5j" path="res://Scripts/obstacule.gd" id="2_2a60c"]
+[ext_resource type="Script" uid="uid://bxdc1gy6moh6i" path="res://Scripts/orb.gd" id="3_4iphx"]
+[ext_resource type="PackedScene" uid="uid://uo7y664uhi7n" path="res://Prefabs/Player1.tscn" id="4_jgkgd"]
+[ext_resource type="Texture2D" uid="uid://cqscmbdewh6x4" path="res://Assets/assets.png" id="5_2a60c"]
+[ext_resource type="PackedScene" uid="uid://d2wk4cxnh4ckx" path="res://Prefabs/Player2.tscn" id="5_bs12r"]
+[ext_resource type="PackedScene" uid="uid://bodbu5x3my2w" path="res://Prefabs/LevelEnd.tscn" id="6_jgkgd"]
+[ext_resource type="Script" uid="uid://bab0nufhq65x7" path="res://Scripts/event_bus.gd" id="6_rqhku"]
+[ext_resource type="PackedScene" uid="uid://cegrkrqutwwt2" path="res://Prefabs/Obstacle.tscn" id="8_4iphx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_674eg"]
+size = Vector2(1149, 17.5)
+
+[sub_resource type="Gradient" id="Gradient_bor1c"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bor1c"]
+gradient = SubResource("Gradient_bor1c")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l14sa"]
+size = Vector2(106, 327.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b6b3g"]
+radius = 9.0
+
+[sub_resource type="Gradient" id="Gradient_p0ik2"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3vfm"]
+gradient = SubResource("Gradient_p0ik2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2a60c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0ik2"]
+size = Vector2(106, 288)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4iphx"]
+radius = 14.035668
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgkgd"]
+size = Vector2(22, 22)
+
+[node name="Level1" type="Node2D" unique_id=452319417]
+
+[node name="Ground" type="RigidBody2D" parent="." unique_id=355906875]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=619187618]
+position = Vector2(578, 640.5)
+shape = SubResource("RectangleShape2D_674eg")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="Divider" type="RigidBody2D" parent="." unique_id=1079936886]
+position = Vector2(-3, -305)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Divider" unique_id=1537928881]
+position = Vector2(580.5, 641.75)
+shape = SubResource("RectangleShape2D_674eg")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="TopHalf" type="Node2D" parent="." unique_id=619010988]
+
+[node name="Background" type="Sprite2D" parent="TopHalf" unique_id=1453528109]
+position = Vector2(576, 164.00002)
+scale = Vector2(4.5000005, 328.00003)
+texture = SubResource("GradientTexture1D_bor1c")
+script = ExtResource("1_didp7")
+
+[node name="Obstacule" type="Node2D" parent="TopHalf" unique_id=1010464322]
+position = Vector2(-542, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TopHalf/Obstacule" unique_id=1067715783]
+script = ExtResource("2_2a60c")
+obstacle_color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopHalf/Obstacule/StaticBody2D" unique_id=1146208516]
+position = Vector2(736, 163.875)
+shape = SubResource("RectangleShape2D_l14sa")
+debug_color = Color(1, 0.1254902, 0.43137255, 0.39215687)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopHalf/Obstacule/StaticBody2D" unique_id=1837454102]
+position = Vector2(736, 163.97592)
+rotation = -1.5707964
+scale = Vector2(0.32032827, 0.332)
+texture = ExtResource("5_2a60c")
+region_enabled = true
+region_rect = Rect2(2, 1, 1024, 320)
+
+[node name="Orb" type="Area2D" parent="TopHalf" unique_id=1979893130]
+position = Vector2(74, 265)
+script = ExtResource("3_4iphx")
+area = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopHalf/Orb" unique_id=1063889100]
+shape = SubResource("CircleShape2D_b6b3g")
+debug_color = Color(0.20784314, 0.9137255, 0.81960785, 0.39215687)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopHalf/Orb" unique_id=1097435008]
+scale = Vector2(0.065573715, 0.0655737)
+texture = ExtResource("5_2a60c")
+region_enabled = true
+region_rect = Rect2(1295, 287, 305, 305)
+
+[node name="BlueLayout" type="Control" parent="TopHalf" unique_id=548170130]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 329.0
+
+[node name="StaticBody2D" parent="TopHalf/BlueLayout" unique_id=84611976 instance=ExtResource("8_4iphx")]
+position = Vector2(771, 223)
+scale = Vector2(1.0001539, 6.551788)
+
+[node name="StaticBody2D2" parent="TopHalf/BlueLayout" unique_id=62229078 instance=ExtResource("8_4iphx")]
+position = Vector2(904, 296)
+
+[node name="StaticBody2D4" parent="TopHalf/BlueLayout" unique_id=258060010 instance=ExtResource("8_4iphx")]
+position = Vector2(705.0002, 152)
+scale = Vector2(7.600017, 1)
+
+[node name="StaticBody2D5" parent="TopHalf/BlueLayout" unique_id=1173783014 instance=ExtResource("8_4iphx")]
+position = Vector2(837, 272)
+
+[node name="StaticBody2D6" parent="TopHalf/BlueLayout" unique_id=1006819539 instance=ExtResource("8_4iphx")]
+position = Vector2(473, 224)
+
+[node name="StaticBody2D7" parent="TopHalf/BlueLayout" unique_id=938753981 instance=ExtResource("8_4iphx")]
+position = Vector2(473, 68)
+scale = Vector2(1, 6.800001)
+
+[node name="StaticBody2D8" parent="TopHalf/BlueLayout" unique_id=1691545806 instance=ExtResource("8_4iphx")]
+position = Vector2(347, 221)
+scale = Vector2(1, 10.519999)
+
+[node name="StaticBody2D10" parent="TopHalf/BlueLayout" unique_id=737189964 instance=ExtResource("8_4iphx")]
+position = Vector2(367, 207)
+
+[node name="StaticBody2D9" parent="TopHalf/BlueLayout" unique_id=389001844 instance=ExtResource("8_4iphx")]
+position = Vector2(793, 233)
+
+[node name="StaticBody2D14" parent="TopHalf/BlueLayout" unique_id=391985543 instance=ExtResource("8_4iphx")]
+position = Vector2(905, 218)
+
+[node name="StaticBody2D15" parent="TopHalf/BlueLayout" unique_id=1672471821 instance=ExtResource("8_4iphx")]
+position = Vector2(981, 189)
+
+[node name="StaticBody2D3" parent="TopHalf/BlueLayout" unique_id=411396762 instance=ExtResource("8_4iphx")]
+position = Vector2(1012, 162)
+
+[node name="StaticBody2D16" parent="TopHalf/BlueLayout" unique_id=1522487722 instance=ExtResource("8_4iphx")]
+position = Vector2(1043, 134)
+
+[node name="StaticBody2D17" parent="TopHalf/BlueLayout" unique_id=1303000518 instance=ExtResource("8_4iphx")]
+position = Vector2(904, 132)
+
+[node name="StaticBody2D18" parent="TopHalf/BlueLayout" unique_id=359448076 instance=ExtResource("8_4iphx")]
+position = Vector2(822, 130)
+
+[node name="StaticBody2D" parent="TopHalf" unique_id=1525539286 instance=ExtResource("8_4iphx")]
+position = Vector2(366, 163)
+scale = Vector2(0.68, 0.48000002)
+
+[node name="StaticBody2D2" parent="TopHalf" unique_id=1411299429 instance=ExtResource("8_4iphx")]
+position = Vector2(362.99997, 121)
+scale = Vector2(0.48000002, 0.44)
+
+[node name="BottomHalf" type="Node2D" parent="." unique_id=1825322611]
+
+[node name="Background" type="Sprite2D" parent="BottomHalf" unique_id=728933990]
+position = Vector2(577, 490.00003)
+scale = Vector2(4.5, 288.25003)
+texture = SubResource("GradientTexture1D_e3vfm")
+script = ExtResource("1_didp7")
+area = 1
+
+[node name="Orb" type="Area2D" parent="BottomHalf" unique_id=1397124070]
+position = Vector2(127.655, 423.895)
+script = ExtResource("3_4iphx")
+color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomHalf/Orb" unique_id=1442580559]
+shape = SubResource("RectangleShape2D_2a60c")
+debug_color = Color(1, 0.1254902, 0.43137255, 0.39215687)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomHalf/Orb" unique_id=621729112]
+scale = Vector2(0.07018498, 0.076949105)
+texture = ExtResource("5_2a60c")
+region_enabled = true
+region_rect = Rect2(1296, 2, 304, 270)
+
+[node name="Obstacle" type="Node2D" parent="BottomHalf" unique_id=624667966]
+position = Vector2(215, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BottomHalf/Obstacle" unique_id=2102018699]
+script = ExtResource("2_2a60c")
+obstacle_area = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomHalf/Obstacle/StaticBody2D" unique_id=683875756]
+position = Vector2(736.2759, 488.38925)
+rotation = -1.5707964
+scale = Vector2(0.2806787, 0.3323988)
+texture = ExtResource("5_2a60c")
+region_enabled = true
+region_rect = Rect2(0, 332, 1029, 335)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomHalf/Obstacle/StaticBody2D" unique_id=1560581722]
+position = Vector2(735, 489)
+shape = SubResource("RectangleShape2D_p0ik2")
+debug_color = Color(0.20784314, 0.9137255, 0.81960785, 0.39215687)
+
+[node name="PinkLayout" type="Control" parent="BottomHalf" unique_id=628663705]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 348.0
+offset_right = 3.0
+offset_bottom = 631.0
+
+[node name="StaticBody2D2" parent="BottomHalf/PinkLayout" unique_id=1187637473 instance=ExtResource("8_4iphx")]
+position = Vector2(424, 217)
+
+[node name="StaticBody2D3" parent="BottomHalf/PinkLayout" unique_id=1140658905 instance=ExtResource("8_4iphx")]
+position = Vector2(504, 187)
+
+[node name="StaticBody2D4" parent="BottomHalf/PinkLayout" unique_id=972814496 instance=ExtResource("8_4iphx")]
+position = Vector2(349, 251)
+
+[node name="StaticBody2D5" parent="BottomHalf/PinkLayout" unique_id=1189495911 instance=ExtResource("8_4iphx")]
+position = Vector2(127, 108)
+scale = Vector2(9.244498, -0.7986519)
+
+[node name="StaticBody2D6" parent="BottomHalf/PinkLayout" unique_id=586792060 instance=ExtResource("8_4iphx")]
+position = Vector2(584, 215)
+
+[node name="StaticBody2D7" parent="BottomHalf/PinkLayout" unique_id=720929811 instance=ExtResource("8_4iphx")]
+position = Vector2(605, 194)
+
+[node name="StaticBody2D8" parent="BottomHalf/PinkLayout" unique_id=903045595 instance=ExtResource("8_4iphx")]
+position = Vector2(626, 173)
+
+[node name="StaticBody2D9" parent="BottomHalf/PinkLayout" unique_id=2029444664 instance=ExtResource("8_4iphx")]
+position = Vector2(647, 153)
+
+[node name="StaticBody2D10" parent="BottomHalf/PinkLayout" unique_id=1697702637 instance=ExtResource("8_4iphx")]
+position = Vector2(545, 71.00003)
+scale = Vector2(4.352975, 0.5335372)
+
+[node name="StaticBody2D11" parent="BottomHalf/PinkLayout" unique_id=828407893 instance=ExtResource("8_4iphx")]
+position = Vector2(446, 53)
+
+[node name="StaticBody2D12" parent="BottomHalf/PinkLayout" unique_id=338318608 instance=ExtResource("8_4iphx")]
+position = Vector2(354, 67)
+
+[node name="StaticBody2D13" parent="BottomHalf/PinkLayout" unique_id=760557311 instance=ExtResource("8_4iphx")]
+position = Vector2(215, 24)
+scale = Vector2(1, 2.6399999)
+
+[node name="StaticBody2D" parent="BottomHalf/PinkLayout" unique_id=2055994458 instance=ExtResource("8_4iphx")]
+position = Vector2(770, 172)
+scale = Vector2(8.52, 0.64)
+
+[node name="StaticBody2D14" parent="BottomHalf/PinkLayout" unique_id=1558183049 instance=ExtResource("8_4iphx")]
+position = Vector2(844, 160)
+scale = Vector2(1, 1.76)
+
+[node name="StaticBody2D15" parent="BottomHalf/PinkLayout" unique_id=2126234923 instance=ExtResource("8_4iphx")]
+position = Vector2(754.00006, 98)
+scale = Vector2(0.3599999, 1.0105846)
+
+[node name="StaticBody2D18" parent="BottomHalf/PinkLayout" unique_id=1687307222 instance=ExtResource("8_4iphx")]
+position = Vector2(794.00006, 119)
+scale = Vector2(0.2495999, 1.0212812)
+
+[node name="StaticBody2D16" parent="BottomHalf/PinkLayout" unique_id=159156761 instance=ExtResource("8_4iphx")]
+position = Vector2(710, 13)
+scale = Vector2(1, 1.4800074)
+
+[node name="StaticBody2D17" parent="BottomHalf/PinkLayout" unique_id=287463430 instance=ExtResource("8_4iphx")]
+position = Vector2(710, 83)
+
+[node name="LevelEnd" parent="BottomHalf" unique_id=480989619 instance=ExtResource("6_jgkgd")]
+position = Vector2(1073, 569)
+
+[node name="Player" parent="." unique_id=583082943 instance=ExtResource("4_jgkgd")]
+position = Vector2(113, 579)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" unique_id=1056161394]
+position = Vector2(13, 12)
+shape = SubResource("CircleShape2D_4iphx")
+debug_color = Color(0.8629109, 0.00062897266, 0.8697743, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1717452288]
+position = Vector2(12.999999, 12)
+scale = Vector2(0.05748171, 0.058764935)
+texture = ExtResource("5_2a60c")
+region_enabled = true
+region_rect = Rect2(782, 894, 548, 502)
+
+[node name="Player2" parent="." unique_id=1850135642 instance=ExtResource("5_bs12r")]
+position = Vector2(725, 103)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player2" unique_id=1336899996]
+position = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_jgkgd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2" unique_id=1512323976]
+position = Vector2(15.000008, 15)
+scale = Vector2(0.0399305, 0.044696975)
+texture = ExtResource("5_2a60c")
+region_enabled = true
+region_rect = Rect2(192, 898, 576, 495)
+
+[node name="EventBus" type="Node2D" parent="." unique_id=141161303]
+position = Vector2(1330, 353)
+script = ExtResource("6_rqhku")
+
+[connection signal="body_entered" from="TopHalf/Orb" to="TopHalf/Orb" method="_on_body_entered"]
+[connection signal="picked_up" from="TopHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
+[connection signal="body_entered" from="BottomHalf/Orb" to="BottomHalf/Orb" method="_on_body_entered"]
+[connection signal="picked_up" from="BottomHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
+[connection signal="hidden" from="BottomHalf/Obstacle/StaticBody2D/CollisionShape2D" to="TopHalf/Orb" method="_on_collision_shape_2d_hidden"]
+[connection signal="area_entered" from="BottomHalf/LevelEnd" to="EventBus" method="_on_level_end_area_entered"]
+[connection signal="orb_picked_up" from="EventBus" to="TopHalf/Background" method="_on_event_bus_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="TopHalf/Obstacule/StaticBody2D" method="_on_event_bus_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Background" method="_on_event_bus_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Obstacle/StaticBody2D" method="_on_event_bus_orb_picked_up"]

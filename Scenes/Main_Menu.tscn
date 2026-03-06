@@ -1,7 +1,10 @@
-[gd_scene load_steps=0 format=3 uid="uid://ulb00muo6h6h"]
+[gd_scene format=3 uid="uid://c6y8pq0vuoxoe"]
 
-[ext_resource type="Texture2D" uid="uid://bwwhsxou6dnow" path="res://Assets/MenuBG.png" id="1_rmbjf"]
+[ext_resource type="Script" uid="uid://cebcluh4lnf5m" path="res://Scripts/main_menu.gd" id="1_anlgx"]
+[ext_resource type="Texture2D" uid="uid://bca0cohporofm" path="res://Assets/MenuBG.png" id="1_rmbjf"]
 [ext_resource type="Texture2D" uid="uid://bg5ahssewlike" path="res://Assets/TitleW.png" id="2_b7rmo"]
+[ext_resource type="Texture2D" uid="uid://dpk5mi48mixjt" path="res://Assets/Play.png" id="3_00u4r"]
+[ext_resource type="Texture2D" uid="uid://8k7sdw66a5cw" path="res://Assets/Close.png" id="4_anlgx"]
 
 [node name="MainMenu" type="Control" unique_id=335096256]
 layout_mode = 3
@@ -10,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_anlgx")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=371874480]
 layout_mode = 1
@@ -48,9 +52,38 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -223.0
-offset_top = 21.5
-offset_right = 223.5
-offset_bottom = 92.5
+offset_left = -279.0
+offset_top = 28.5
+offset_right = 281.0
+offset_bottom = 99.5
 grow_horizontal = 2
 texture = ExtResource("2_b7rmo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=1673373523]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.064
+anchor_top = 0.23700002
+anchor_right = 0.934
+anchor_bottom = 0.982
+offset_left = 0.28399658
+offset_top = 0.022987366
+offset_right = -1.7460327
+offset_bottom = -12.122009
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=2138705963]
+layout_mode = 2
+icon = ExtResource("3_00u4r")
+autowrap_trim_flags = 64
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=539688649]
+layout_mode = 2
+icon = ExtResource("4_anlgx")
+icon_alignment = 1
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
