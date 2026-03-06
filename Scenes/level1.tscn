@@ -38,12 +38,6 @@ gradient = SubResource("Gradient_p0ik2")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0ik2"]
 size = Vector2(106, 288)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4iphx"]
-radius = 14.035668
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgkgd"]
-size = Vector2(22, 22)
-
 [node name="Level1" type="Node2D" unique_id=452319417]
 
 [node name="Ground" type="RigidBody2D" parent="." unique_id=355906875]
@@ -289,33 +283,10 @@ position = Vector2(710, 83)
 position = Vector2(1073, 569)
 
 [node name="Player" parent="." unique_id=583082943 instance=ExtResource("4_jgkgd")]
-position = Vector2(49, 408)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" unique_id=1056161394]
-position = Vector2(13, 12)
-shape = SubResource("CircleShape2D_4iphx")
-debug_color = Color(0.8629109, 0.00062897266, 0.8697743, 0.41960785)
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1717452288]
-position = Vector2(12.999999, 12)
-scale = Vector2(0.05748171, 0.058764935)
-texture = ExtResource("5_2a60c")
-region_enabled = true
-region_rect = Rect2(782, 894, 548, 502)
+position = Vector2(51, 598)
 
 [node name="Player2" parent="." unique_id=1850135642 instance=ExtResource("5_bs12r")]
-position = Vector2(725, 103)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player2" unique_id=1336899996]
-position = Vector2(15, 15)
-shape = SubResource("RectangleShape2D_jgkgd")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player2" unique_id=1512323976]
-position = Vector2(15.000008, 15)
-scale = Vector2(0.0399305, 0.044696975)
-texture = ExtResource("5_2a60c")
-region_enabled = true
-region_rect = Rect2(192, 898, 576, 495)
+position = Vector2(1057, 278)
 
 [node name="EventBus" type="Node2D" parent="." unique_id=141161303]
 position = Vector2(1330, 353)

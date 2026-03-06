@@ -1,14 +1,20 @@
 [gd_scene format=3 uid="uid://d2wk4cxnh4ckx"]
 
 [ext_resource type="Script" uid="uid://b8lvyyfl7281s" path="res://Scripts/player_2.gd" id="1_12y2i"]
+[ext_resource type="Texture2D" uid="uid://cqscmbdewh6x4" path="res://Assets/assets.png" id="2_2h7um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_561jk"]
-size = Vector2(31, 30)
+size = Vector2(32, 30)
 
 [node name="Player2" type="CharacterBody2D" unique_id=1850135642]
 script = ExtResource("1_12y2i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1028695662]
-position = Vector2(15.5, 15)
 shape = SubResource("RectangleShape2D_561jk")
 debug_color = Color(0.20784314, 0.9137255, 0.81960785, 0.39215687)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1698963797]
+scale = Vector2(0.05555557, 0.06048387)
+texture = ExtResource("2_2h7um")
+region_enabled = true
+region_rect = Rect2(192, 896, 576, 496)

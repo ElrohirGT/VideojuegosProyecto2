@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://uo7y664uhi7n"]
 
 [ext_resource type="Script" uid="uid://05xhj6y2rvnf" path="res://Scripts/player.gd" id="1_rpqav"]
+[ext_resource type="Texture2D" uid="uid://cqscmbdewh6x4" path="res://Assets/assets.png" id="2_d5aan"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
-size = Vector2(26, 25)
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2r6i"]
+radius = 15.033297
 
 [node name="Player" type="CharacterBody2D" unique_id=1808111490]
 script = ExtResource("1_rpqav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1406268912]
-position = Vector2(13, 12.5)
-shape = SubResource("RectangleShape2D_rpqav")
+shape = SubResource("CircleShape2D_t2r6i")
 debug_color = Color(1, 0.1254902, 0.43137255, 0.39215687)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=593356599]
+position = Vector2(5.066395e-07, 2.3841858e-07)
+scale = Vector2(0.055, 0.06)
+texture = ExtResource("2_d5aan")
+region_enabled = true
+region_rect = Rect2(784, 896, 545, 496)

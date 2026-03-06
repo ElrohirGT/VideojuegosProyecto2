@@ -18,4 +18,5 @@ func _process(delta):
 		velocity.x = -_velocity
 	else:
 		velocity.x = 0
+	
 	move_and_slide()
