@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dho23wrfpdvxe"]
+
+[ext_resource type="Script" uid="uid://dy1jowxjdv0b" path="res://Scripts/background.gd" id="1_p1f1o"]
+[ext_resource type="PackedScene" uid="uid://bj7i1me4c7srg" path="res://Prefabs/pink_obstacle.tscn" id="2_h2ono"]
+[ext_resource type="PackedScene" uid="uid://evp0136jvgg1" path="res://Prefabs/cyan_orb.tscn" id="3_on4kn"]
+[ext_resource type="PackedScene" uid="uid://c3x57kf41ko2x" path="res://Prefabs/pink_orb.tscn" id="4_h2ono"]
+[ext_resource type="PackedScene" uid="uid://uo7y664uhi7n" path="res://Prefabs/Player1.tscn" id="4_on4kn"]
+[ext_resource type="PackedScene" uid="uid://d2wk4cxnh4ckx" path="res://Prefabs/Player2.tscn" id="5_70gml"]
+[ext_resource type="PackedScene" uid="uid://bvna4sqhdj3s8" path="res://Prefabs/cyan_obstacle.tscn" id="5_h2ono"]
+[ext_resource type="Script" uid="uid://bab0nufhq65x7" path="res://Scripts/event_bus.gd" id="6_8va2t"]
+
+[sub_resource type="Gradient" id="Gradient_bor1c"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_koko0"]
+gradient = SubResource("Gradient_bor1c")
+
+[sub_resource type="Gradient" id="Gradient_p0ik2"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t6ver"]
+gradient = SubResource("Gradient_p0ik2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mnmb"]
+size = Vector2(1182, 20)
+
+[node name="Tutorial" type="Node2D" unique_id=561878094]
+
+[node name="TopHalf" type="Node2D" parent="." unique_id=1549411929]
+
+[node name="Background" type="Sprite2D" parent="TopHalf" unique_id=950714053]
+position = Vector2(600.50006, 164.00002)
+scale = Vector2(4.6914067, 328.00003)
+texture = SubResource("GradientTexture1D_koko0")
+script = ExtResource("1_p1f1o")
+
+[node name="Obstacle" parent="TopHalf" unique_id=2126913116 instance=ExtResource("2_h2ono")]
+position = Vector2(739, 164)
+
+[node name="Orb" parent="TopHalf" unique_id=1503716030 instance=ExtResource("3_on4kn")]
+position = Vector2(963, 269)
+
+[node name="BottomHalf" type="Node2D" parent="." unique_id=257968205]
+
+[node name="Background" type="Sprite2D" parent="BottomHalf" unique_id=964913226]
+position = Vector2(604, 491.75)
+scale = Vector2(4.7109375, 284.50003)
+texture = SubResource("GradientTexture1D_t6ver")
+script = ExtResource("1_p1f1o")
+area = 1
+
+[node name="Orb" parent="BottomHalf" unique_id=835637418 instance=ExtResource("4_h2ono")]
+position = Vector2(343, 589)
+
+[node name="Obstacle" parent="BottomHalf" unique_id=889517478 instance=ExtResource("5_h2ono")]
+position = Vector2(739, 493)
+
+[node name="Player" parent="." unique_id=1808111490 instance=ExtResource("4_on4kn")]
+position = Vector2(113, 579)
+
+[node name="Player2" parent="." unique_id=1850135642 instance=ExtResource("5_70gml")]
+position = Vector2(101, 259)
+
+[node name="EventBus" type="Node2D" parent="." unique_id=1749710572]
+position = Vector2(1330, 353)
+script = ExtResource("6_8va2t")
+
+[node name="Ground" type="RigidBody2D" parent="." unique_id=1857306836]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=941049619]
+position = Vector2(581, 643)
+shape = SubResource("RectangleShape2D_8mnmb")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="Divider" type="RigidBody2D" parent="." unique_id=589087443]
+position = Vector2(-3, -305)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Divider" unique_id=955884370]
+position = Vector2(581, 643)
+shape = SubResource("RectangleShape2D_8mnmb")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[connection signal="picked_up" from="TopHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
+[connection signal="picked_up" from="BottomHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="TopHalf/Background" method="_on_event_bus_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="TopHalf/Obstacle" method="_on_event_bus_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Background" method="_on_event_bus_orb_picked_up"]
+[connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Obstacle" method="_on_event_bus_orb_picked_up"]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bj7i1me4c7srg"]
+
+[ext_resource type="Script" uid="uid://duqjvwk83pu5j" path="res://Scripts/obstacule.gd" id="1_2kt1y"]
+[ext_resource type="Texture2D" uid="uid://cqscmbdewh6x4" path="res://Assets/assets.png" id="2_ek3ch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsb8r"]
+size = Vector2(30.5, 325.5)
+
+[node name="Obstacle" type="StaticBody2D" unique_id=2126913116]
+script = ExtResource("1_2kt1y")
+obstacle_color = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1038088008]
+rotation = -1.5707964
+scale = Vector2(0.31992853, 0.09627869)
+texture = ExtResource("2_ek3ch")
+region_enabled = true
+region_rect = Rect2(0, 0, 1024, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100749238]
+shape = SubResource("RectangleShape2D_lsb8r")
+debug_color = Color(1, 0.1254902, 0.43137255, 0.39215687)

@@ -289,7 +289,7 @@ position = Vector2(710, 83)
 position = Vector2(1073, 569)
 
 [node name="Player" parent="." unique_id=583082943 instance=ExtResource("4_jgkgd")]
-position = Vector2(113, 579)
+position = Vector2(49, 408)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" unique_id=1056161394]
 position = Vector2(13, 12)
