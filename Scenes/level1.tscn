@@ -303,12 +303,14 @@ script = ExtResource("9_jgkgd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Area2D" unique_id=1855280116]
 position = Vector2(72.5, 166.5)
 shape = SubResource("RectangleShape2D_bs12r")
+debug_color = Color(0.63529414, 0.5294118, 0, 0.41960785)
 
 [node name="Area2D2" type="Area2D" parent="Container" unique_id=1415145616]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Area2D2" unique_id=1431618260]
 position = Vector2(1078.5, 490)
 shape = SubResource("RectangleShape2D_rqhku")
+debug_color = Color(0.63529414, 0.5294118, 0, 0.41960785)
 
 [connection signal="body_entered" from="TopHalf/Orb" to="TopHalf/Orb" method="_on_body_entered"]
 [connection signal="picked_up" from="TopHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
