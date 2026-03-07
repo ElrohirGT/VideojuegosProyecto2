@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bodbu5x3my2w"]
 
-[ext_resource type="Script" uid="uid://bvthuqvtu1oqx" path="res://Scripts/level_end.gd" id="1_0d5du"]
+[ext_resource type="Script" uid="uid://dvoq8ht8uafwk" path="res://Scripts/winArea.gd" id="1_0d5du"]
 [ext_resource type="Texture2D" uid="uid://bkdo77wmjsuvs" path="res://Assets/MenuBackground.png" id="1_73ju1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d5du"]
-radius = 36.345562
+radius = 206.49455
 
 [node name="LevelEnd" type="Area2D" unique_id=480989619]
 script = ExtResource("1_0d5du")
@@ -13,6 +13,6 @@ script = ExtResource("1_0d5du")
 shape = SubResource("CircleShape2D_0d5du")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1822923573]
-position = Vector2(1.9073486e-06, 1.9073486e-06)
-scale = Vector2(4.5000005, 4.5000005)
+position = Vector2(1.9073486e-06, -65)
+scale = Vector2(4.5000005, 16.125)
 texture = ExtResource("1_73ju1")

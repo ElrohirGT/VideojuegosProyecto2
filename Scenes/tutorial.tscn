@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2wk4cxnh4ckx" path="res://Prefabs/Player2.tscn" id="5_70gml"]
 [ext_resource type="PackedScene" uid="uid://bvna4sqhdj3s8" path="res://Prefabs/cyan_obstacle.tscn" id="5_h2ono"]
 [ext_resource type="Script" uid="uid://bab0nufhq65x7" path="res://Scripts/event_bus.gd" id="6_8va2t"]
+[ext_resource type="Script" uid="uid://dvoq8ht8uafwk" path="res://Scripts/winArea.gd" id="9_on4kn"]
 
 [sub_resource type="Gradient" id="Gradient_bor1c"]
 offsets = PackedFloat32Array(1)
@@ -25,6 +26,9 @@ gradient = SubResource("Gradient_p0ik2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mnmb"]
 size = Vector2(1182, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70gml"]
+size = Vector2(395.5, 642)
 
 [node name="Tutorial" type="Node2D" unique_id=561878094]
 
@@ -84,9 +88,19 @@ position = Vector2(581, 643)
 shape = SubResource("RectangleShape2D_8mnmb")
 debug_color = Color(0, 0, 0, 0.41960785)
 
+[node name="Area2D" type="Area2D" parent="." unique_id=292263671]
+position = Vector2(434, -25)
+script = ExtResource("9_on4kn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1191108107]
+position = Vector2(924, 349)
+shape = SubResource("RectangleShape2D_70gml")
+debug_color = Color(0.6347944, 0.5278401, 0, 0.41960785)
+
 [connection signal="picked_up" from="TopHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
 [connection signal="picked_up" from="BottomHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
 [connection signal="orb_picked_up" from="EventBus" to="TopHalf/Background" method="_on_event_bus_orb_picked_up"]
 [connection signal="orb_picked_up" from="EventBus" to="TopHalf/Obstacle" method="_on_event_bus_orb_picked_up"]
 [connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Background" method="_on_event_bus_orb_picked_up"]
 [connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Obstacle" method="_on_event_bus_orb_picked_up"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://uo7y664uhi7n" path="res://Prefabs/Player1.tscn" id="4_jgkgd"]
 [ext_resource type="Texture2D" uid="uid://cqscmbdewh6x4" path="res://Assets/assets.png" id="5_2a60c"]
 [ext_resource type="PackedScene" uid="uid://d2wk4cxnh4ckx" path="res://Prefabs/Player2.tscn" id="5_bs12r"]
-[ext_resource type="PackedScene" uid="uid://bodbu5x3my2w" path="res://Prefabs/LevelEnd.tscn" id="6_jgkgd"]
 [ext_resource type="Script" uid="uid://bab0nufhq65x7" path="res://Scripts/event_bus.gd" id="6_rqhku"]
 [ext_resource type="PackedScene" uid="uid://cegrkrqutwwt2" path="res://Prefabs/Obstacle.tscn" id="8_4iphx"]
+[ext_resource type="Script" uid="uid://b2fcgny0w311q" path="res://Scripts/differentAreas.gd" id="9_jgkgd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_674eg"]
 size = Vector2(1149, 17.5)
@@ -37,6 +37,12 @@ gradient = SubResource("Gradient_p0ik2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0ik2"]
 size = Vector2(106, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs12r"]
+size = Vector2(145, 329)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqhku"]
+size = Vector2(149, 286)
 
 [node name="Level1" type="Node2D" unique_id=452319417]
 
@@ -279,9 +285,6 @@ scale = Vector2(1, 1.4800074)
 [node name="StaticBody2D17" parent="BottomHalf/PinkLayout" unique_id=287463430 instance=ExtResource("8_4iphx")]
 position = Vector2(710, 83)
 
-[node name="LevelEnd" parent="BottomHalf" unique_id=480989619 instance=ExtResource("6_jgkgd")]
-position = Vector2(1073, 569)
-
 [node name="Player" parent="." unique_id=583082943 instance=ExtResource("4_jgkgd")]
 position = Vector2(51, 598)
 
@@ -292,13 +295,29 @@ position = Vector2(1057, 278)
 position = Vector2(1330, 353)
 script = ExtResource("6_rqhku")
 
+[node name="Container" type="Node" parent="." unique_id=673370656]
+script = ExtResource("9_jgkgd")
+
+[node name="Area2D" type="Area2D" parent="Container" unique_id=939064621]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Area2D" unique_id=1855280116]
+position = Vector2(72.5, 166.5)
+shape = SubResource("RectangleShape2D_bs12r")
+
+[node name="Area2D2" type="Area2D" parent="Container" unique_id=1415145616]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Area2D2" unique_id=1431618260]
+position = Vector2(1078.5, 490)
+shape = SubResource("RectangleShape2D_rqhku")
+
 [connection signal="body_entered" from="TopHalf/Orb" to="TopHalf/Orb" method="_on_body_entered"]
 [connection signal="picked_up" from="TopHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
 [connection signal="body_entered" from="BottomHalf/Orb" to="BottomHalf/Orb" method="_on_body_entered"]
 [connection signal="picked_up" from="BottomHalf/Orb" to="EventBus" method="_on_orb_picked_up"]
 [connection signal="hidden" from="BottomHalf/Obstacle/StaticBody2D/CollisionShape2D" to="TopHalf/Orb" method="_on_collision_shape_2d_hidden"]
-[connection signal="area_entered" from="BottomHalf/LevelEnd" to="EventBus" method="_on_level_end_area_entered"]
 [connection signal="orb_picked_up" from="EventBus" to="TopHalf/Background" method="_on_event_bus_orb_picked_up"]
 [connection signal="orb_picked_up" from="EventBus" to="TopHalf/Obstacule/StaticBody2D" method="_on_event_bus_orb_picked_up"]
 [connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Background" method="_on_event_bus_orb_picked_up"]
 [connection signal="orb_picked_up" from="EventBus" to="BottomHalf/Obstacle/StaticBody2D" method="_on_event_bus_orb_picked_up"]
+[connection signal="body_entered" from="Container/Area2D" to="Container" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Container/Area2D2" to="Container" method="_on_area_2d_2_body_entered"]
